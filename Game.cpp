@@ -20,7 +20,7 @@ void Game::init(int xpos, int ypos, int wth, int ht)
 	m_win = newwin(m_height,m_width,ypos,xpos);
 	m_menuwin = newwin(5,m_width,25,0);
 	keypad(stdscr,TRUE);
-	echo();
+	noecho();
 	curs_set(0);
 	start_color();
 	init_pair(1,COLOR_BLACK,COLOR_BLACK);
@@ -51,18 +51,19 @@ void Game::run()
 
 void Game::getInput()
 {
+	timeout(3000);
 	m_ch = getch();	
 }
 
 void Game::update()
 {
+	drawxpm(title_xpm,m_win,0,0,0,80,25);
+	box(m_win,0,0);
+	box(m_menuwin,0,0);
 }
 
 void Game::render()
 {
-	drawxpm(title_xpm,m_win,0,0,0,80,25);
-	box(m_win,0,0);
-	box(m_menuwin,0,0);
 	wrefresh(m_win);
 	refresh();
 }
