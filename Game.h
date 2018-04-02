@@ -5,6 +5,12 @@
 #include <ncurses.h>
 #include <string>
 class Game {
+	public:
+		Game();
+		~Game();
+		void clean();
+		void init(int xpos, int ypos, int wth, int ht);
+		void run();
 	private:
 		int m_ch;
 		int m_room;
@@ -17,12 +23,6 @@ class Game {
 		bool running; 	
 		WINDOW *m_win;
 		WINDOW *m_menuwin;
-	public:
-		Game();
-		~Game();
-		void clean();
-		void init(int xpos, int ypos, int wth, int ht);
-		void run();
 };	
 
 #endif /*GAME_H*/

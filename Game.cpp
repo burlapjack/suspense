@@ -7,10 +7,20 @@
 #include "img/title.xpm"
 #include "img/faces.xpm"
 #include "drawxpm.h"
+#include "Player.h"
+#include "Item.h"
 
 Game::Game()
 {
 }
+
+Game::~Game()
+{
+	delwin(m_menuwin);
+	delwin(m_win);
+	endwin();	
+}
+
 void Game::init(int xpos, int ypos, int wth, int ht)
 {
 	m_room = 0;
@@ -23,6 +33,7 @@ void Game::init(int xpos, int ypos, int wth, int ht)
 	noecho();
 	curs_set(0);
 	start_color();
+	
 	init_pair(1,COLOR_BLACK,COLOR_BLACK);
 	init_pair(2,COLOR_RED,COLOR_RED);
 	init_pair(3,COLOR_GREEN,COLOR_GREEN);
@@ -32,13 +43,6 @@ void Game::init(int xpos, int ypos, int wth, int ht)
 	init_pair(7,COLOR_CYAN,COLOR_CYAN);
 	init_pair(8,COLOR_WHITE,COLOR_WHITE);
 	init_pair(9,COLOR_WHITE,COLOR_BLACK);
-}
-
-Game::~Game()
-{
-	delwin(m_menuwin);
-	delwin(m_win);
-	endwin();	
 }
 
 void Game::run()
@@ -51,7 +55,7 @@ void Game::run()
 
 void Game::getInput()
 {
-	timeout(3000);
+	//timeout(3000);
 	m_ch = getch();	
 }
 
